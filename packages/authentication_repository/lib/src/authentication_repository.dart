@@ -37,7 +37,7 @@ class AuthenticationRepository {
     });
   }
 
-// Создает нового пользователя с указанными [адрес электронной почты] и [пароль].
+// Создает нового пользователя с указанными [email] и [password].
 // Выбрасывает [SignUpFailure], если возникает исключение.
   Future<void> signUp({
     @required String email,
@@ -70,9 +70,9 @@ class AuthenticationRepository {
     }
   }
 
-// Входит в систему, используя указанные [email] и [password].
+// Входит в систему, используя предоставленные [email] и [password].
 // Выбрасывает [LogInWithEmailAndPasswordFailure], если возникает исключение.
-  Future<void> SignUP({
+  Future<void> logInWithEmailAndPassword({
     @required String email,
     @required String password,
   }) async {
