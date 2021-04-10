@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "180270219436",
+    "project_id": "gamaapp-23440",
+    "storage_bucket": "gamaapp-23440.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180270219436:android:3c36c9f661c4fab9955f09",
+        "android_client_info": {
+          "package_name": "com.example.gama_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180270219436-n2khc5vgh3pu0nghev38u9bb6smdp2ts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gama_app",
+            "certificate_hash": "4ad1d030f7565aab527a85ff79360d34c5632214"
+          }
+        },
+        {
+          "client_id": "180270219436-1nejtnrll6eq9gkqknbarsn61upptqhh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABMERPNmSKIciS4e6B6_g4YHxvwODHcgY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180270219436-1nejtnrll6eq9gkqknbarsn61upptqhh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
