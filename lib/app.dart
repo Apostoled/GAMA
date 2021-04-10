@@ -1,11 +1,11 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication/authentication.dart';
-import 'package:flutter_firebase_login/home/home.dart';
-import 'package:flutter_firebase_login/login/login.dart';
-import 'package:flutter_firebase_login/splash/splash.dart';
-import 'package:flutter_firebase_login/theme.dart';
+import 'package:gama_app/authentication/authentication.dart';
+import 'package:gama_app/home/home.dart';
+import 'package:gama_app/login/login.dart';
+import 'package:gama_app/splash/splash.dart';
+import 'package:gama_app/theme.dart';
 
 class App extends StatelessWidget {
   final AuthenticationRepository authenticationRepository;

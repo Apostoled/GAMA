@@ -17,20 +17,20 @@ class SignUpForm extends StatelessWidget {
         }
       },
       child: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _EmailInput(),
-            const SizedBox(height: 8.0),
-            _PasswordInput(),
-            const SizedBox(height: 8.0),
-            _ConfirmPasswordInput(),
-            const SizedBox(height: 8.0),
-            _SignUpButton(),
-          ],
-        ),
-      ),
+          alignment: const Alignment(0, -1 / 3),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _EmailInput(),
+                const SizedBox(height: 4.0),
+                _PasswordInput(),
+                const SizedBox(height: 4.0),
+                _ConfirmPasswordInput(),
+                const SizedBox(height: 4.0),
+                _SignUpButton(),
+              ],
+            ),
+          ),
     );
   }
 }
@@ -38,7 +38,7 @@ class SignUpForm extends StatelessWidget {
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
+    return BlocBuilder<SignUpCubit, SignUpState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
