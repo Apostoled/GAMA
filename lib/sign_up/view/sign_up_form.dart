@@ -12,25 +12,25 @@ class SignUpForm extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              const SnackBar(content: Text('Sign Up Failure')),
+              const SnackBar(content: Center(child: Text('Sign Up Failure'))),
             );
         }
       },
       child: Align(
-          alignment: const Alignment(0, -1 / 3),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _EmailInput(),
-                const SizedBox(height: 4.0),
-                _PasswordInput(),
-                const SizedBox(height: 4.0),
-                _ConfirmPasswordInput(),
-                const SizedBox(height: 4.0),
-                _SignUpButton(),
-              ],
-            ),
-          ),
+        alignment: const Alignment(0, -1 / 3),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _EmailInput(),
+            const SizedBox(height: 4.0),
+            _PasswordInput(),
+            const SizedBox(height: 4.0),
+            _ConfirmPasswordInput(),
+            const SizedBox(height: 4.0),
+            _SignUpButton(),
+          ],
+        ),
+      ),
     );
   }
 }
