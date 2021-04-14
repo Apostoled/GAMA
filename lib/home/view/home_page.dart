@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gama_app/authentication/authentication.dart';
 import 'package:gama_app/home/home.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:gama_app/store/bloc/main_bloc.dart';
+import 'package:main_repository/main_repository.dart';
 
 class HomePage extends StatefulWidget {
   static Route route() {
@@ -20,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final user = context.select((AuthenticationBloc bloc) => bloc.state.user);
-
+    final games = context.select((MainBloc bloc) => bloc.state.games);
     AdvancedDrawer(
       backdropColor: Colors.blueGrey,
       controller: _advancedDrawerController,
@@ -82,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                               key: const Key('homePage_settings_iconbutton'),
                               icon: const Icon(Icons.settings),
                               iconSize: 35,
-                              onPressed: () => {},
+                              onPressed: () => print(games),
                             ),
                             IconButton(
                               key: const Key('homePage_logout_iconButton'),

@@ -5,27 +5,48 @@ import 'package:gama_app/authentication/authentication.dart';
 import 'package:gama_app/home/home.dart';
 import 'package:gama_app/login/login.dart';
 import 'package:gama_app/splash/splash.dart';
+import 'package:gama_app/store/bloc/main_bloc.dart';
 import 'package:gama_app/theme.dart';
+import 'package:main_repository/main_repository.dart';
 
 class App extends StatelessWidget {
   final AuthenticationRepository authenticationRepository;
+  final MainRepository mainRepository;
 
   const App({
     Key key,
     @required this.authenticationRepository,
+    @required this.mainRepository,
   })  : assert(authenticationRepository != null),
+        assert(mainRepository != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: authenticationRepository,
-      child: BlocProvider(
-        create: (_) => AuthenticationBloc(
-          authenticationRepository: authenticationRepository,
-        ),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthenticationBloc>(
+            create: (_) => AuthenticationBloc(
+              authenticationRepository: authenticationRepository,
+            ),
+          ),
+          BlocProvider<MainBloc>(
+            create: (_) => MainBloc(
+              mainRepository: mainRepository,
+            ),
+          ),
+        ],
         child: AppView(),
       ),
+
+      //  BlocProvider(
+      //   create: (_) => AuthenticationBloc(
+      //     authenticationRepository: authenticationRepository,
+      //   ),
+      //   child: AppView(),
+      // ),
     );
   }
 }
