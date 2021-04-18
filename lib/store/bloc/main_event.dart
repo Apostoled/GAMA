@@ -8,11 +8,11 @@ abstract class MainEvent extends Equatable {
 }
 
 class GamesListChanged extends MainEvent {
-  final List<Game> games;
-  const GamesListChanged(this.games);
+  final List<Game> gamesList;
+  const GamesListChanged(this.gamesList);
 
   @override
-  List<Object> get props => [games];
+  List<Object> get props => [gamesList];
 }
 
 

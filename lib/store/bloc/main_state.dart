@@ -4,21 +4,21 @@ enum MainStatus { gamesLoaded, unknown }
 
 class MainState extends Equatable {
   final MainStatus status;
-  final List<Game> games;
+  final List<Game> gamesList;
 
   const MainState._({
     this.status = MainStatus.unknown,
-    this.games = Game.empty,
+    this.gamesList = Game.empty,
   });
 
   const MainState.unknown() : this._();
 
-  const MainState.gamesLoaded(List<Game> games)
+  const MainState.gamesLoaded(List<Game> gamesList)
       : this._(
           status: MainStatus.gamesLoaded,
-          games: games,
+          gamesList: gamesList,
         );
 
   @override
-  List<Object> get props => [status, games];
+  List<Object> get props => [status, gamesList];
 }

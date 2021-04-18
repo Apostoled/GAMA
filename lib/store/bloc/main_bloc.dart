@@ -32,8 +32,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
   }
 
   MainState _mapGamesListChangedToState(GamesListChanged event) {
-    return event.games != Game.empty
-        ? MainState.gamesLoaded(event.games)
+    return event.gamesList != Game.empty
+        ? MainState.gamesLoaded(event.gamesList)
         : const MainState.unknown();
   }
 
