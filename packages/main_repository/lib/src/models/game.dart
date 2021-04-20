@@ -12,7 +12,8 @@ class Game extends Equatable {
   })  : assert(name != null),
         assert(id != null);
 
-  static const empty = [Game(name: '', id: '')];
+  static const empty = Game(name: '', id: '');
+  static const emptyList = [Game(name: '', id: '')];
 
   @override
   List<Object> get props => [id, name];

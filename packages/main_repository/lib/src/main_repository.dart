@@ -6,13 +6,19 @@ import 'models/models.dart';
 class MainRepository {
   final _gamesCollection = FirebaseFirestore.instance.collection('Games');
 
-  Stream<List<Game>> get games {
-    return _gamesCollection.snapshots().map((snapshot) {
-      return snapshot.docs == null
-          ? Game.empty
-          : snapshot.docs
-              .map((doc) => Game(id: doc.id, name: doc.get('name')))
-              .toList();
-    });
+  //Получение списка игр
+  Future<List<Game>> getGamesList() async {
+    try {
+      QuerySnapshot querySnapshot = await _gamesCollection.get();
+
+      // Get data from docs and convert map to List
+      return querySnapshot.docs.map((doc) {
+        return doc == null
+            ? Game.empty
+            : Game(id: doc.id, name: doc.get('name'));
+      }).toList();
+    } catch (_) {
+      throw Exception('Ошибка получения списка игр!');
+    }
   }
 }

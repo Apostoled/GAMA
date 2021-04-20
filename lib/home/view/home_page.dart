@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gama_app/authentication/authentication.dart';
 import 'package:gama_app/home/home.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:main_repository/main_repository.dart';
 
 class HomePage extends StatelessWidget {
+  final MainRepository mainRepository = MainRepository();
+
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => HomePage());
   }
@@ -29,22 +32,26 @@ class HomePage extends StatelessWidget {
       backdropColor: Colors.blueGrey,
       controller: _advancedDrawerController,
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text('GAMA'),
-            centerTitle: true,
-            leading: IconButton(
-              onPressed: _handleMenuButtonPressed,
-              icon: ValueListenableBuilder<AdvancedDrawerValue>(
-                valueListenable: _advancedDrawerController,
-                builder: (context, value, child) {
-                  return Icon(
-                    value.visible ? Icons.clear : Icons.menu,
-                  );
-                },
-              ),
+        appBar: AppBar(
+          title: const Text('GAMA'),
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: _handleMenuButtonPressed,
+            icon: ValueListenableBuilder<AdvancedDrawerValue>(
+              valueListenable: _advancedDrawerController,
+              builder: (context, value, child) {
+                return Icon(
+                  value.visible ? Icons.clear : Icons.menu,
+                );
+              },
             ),
           ),
-          body: Container()),
+        ),
+        body: BlocProvider<GamesListCubit>(
+          create: (context) => GamesListCubit(mainRepository: mainRepository),
+          child: GamesList(),
+        ),
+      ),
       drawer: SafeArea(
         child: Container(
           child: ListTileTheme(
