@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
         ),
         body: BlocProvider<GamesListCubit>(
           create: (context) => GamesListCubit(mainRepository: mainRepository),
-          child: GamesList(),
+          child: GamesListPanel(),
         ),
       ),
       drawer: SafeArea(

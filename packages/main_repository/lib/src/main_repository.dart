@@ -15,10 +15,16 @@ class MainRepository {
       return querySnapshot.docs.map((doc) {
         return doc == null
             ? Game.empty
-            : Game(id: doc.id, name: doc.get('name'));
+            : Game(
+                id: doc.id,
+                name: doc.data()['name'],
+                playersCount: doc.data()['PlayersCount'],
+                avgTime: doc.data()['Time'],
+                enabled: doc.data()['Enabled'],
+              );
       }).toList();
     } catch (_) {
-      throw Exception('Ошибка получения списка игр!');
+      throw Exception().toString();
     }
   }
 }
