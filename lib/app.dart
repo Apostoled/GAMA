@@ -1,6 +1,4 @@
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:main_repository/main_repository.dart';
-import 'package:gama_app/store/main.dart';
 import 'package:gama_app/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,14 +9,11 @@ import 'package:gama_app/theme.dart';
 
 class App extends StatelessWidget {
   final AuthenticationRepository authenticationRepository;
-  final MainRepository mainRepository;
 
   const App({
     Key key,
     @required this.authenticationRepository,
-    @required this.mainRepository,
   })  : assert(authenticationRepository != null),
-        assert(mainRepository != null),
         super(key: key);
 
   @override
@@ -30,11 +25,6 @@ class App extends StatelessWidget {
           BlocProvider<AuthenticationBloc>(
             create: (_) => AuthenticationBloc(
               authenticationRepository: authenticationRepository,
-            ),
-          ),
-          BlocProvider<MainBloc>(
-            create: (_) => MainBloc(
-              mainRepository: mainRepository,
             ),
           ),
         ],

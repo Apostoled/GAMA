@@ -3,33 +3,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gama_app/authentication/authentication.dart';
 import 'package:gama_app/home/home.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
-import 'package:gama_app/store/bloc/main_bloc.dart';
 import 'package:main_repository/main_repository.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
+  final MainRepository mainRepository = MainRepository();
+
   static Route route() {
     return MaterialPageRoute<void>(builder: (_) => HomePage());
   }
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   final _advancedDrawerController = AdvancedDrawerController();
+
+  void _handleMenuButtonPressed() {
+    _advancedDrawerController.showDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final user = context.select((AuthenticationBloc bloc) => bloc.state.user);
-    final games = context.select((MainBloc bloc) => bloc.state.games);
     AdvancedDrawer(
       backdropColor: Colors.blueGrey,
       controller: _advancedDrawerController,
       child: SizedBox(),
       drawer: SizedBox(),
     );
-
     return AdvancedDrawer(
       backdropColor: Colors.blueGrey,
       controller: _advancedDrawerController,
@@ -49,59 +47,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(2),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Avatar(
-                    photo: user.photo,
-                  ),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          user.name ?? '',
-                          style: textTheme.headline5,
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            IconButton(
-                              key: const Key('homePage_stats_iconbutton'),
-                              icon: const Icon(Icons.bar_chart_rounded),
-                              iconSize: 35,
-                              onPressed: () => {},
-                            ),
-                            IconButton(
-                              key: const Key('homePage_settings_iconbutton'),
-                              icon: const Icon(Icons.settings),
-                              iconSize: 35,
-                              onPressed: () => print(games),
-                            ),
-                            IconButton(
-                              key: const Key('homePage_logout_iconButton'),
-                              icon: const Icon(Icons.exit_to_app),
-                              onPressed: () => context
-                                  .read<AuthenticationBloc>()
-                                  .add(AuthenticationLogoutRequested()),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+        body: BlocProvider<GamesListCubit>(
+          create: (context) => GamesListCubit(mainRepository: mainRepository),
+          child: GamesListPanel(),
         ),
       ),
       drawer: SafeArea(
@@ -171,11 +119,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  void _handleMenuButtonPressed() {
-    // NOTICE: Manage Advanced Drawer state through the Controller.
-    // _advancedDrawerController.value = AdvancedDrawerValue.visible();
-    _advancedDrawerController.showDrawer();
   }
 }
